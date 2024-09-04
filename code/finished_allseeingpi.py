@@ -56,8 +56,8 @@ output = ""
 latest_photo = '/home/pi/allseeingpi/latest.gif'
 
 app = App("Fotobox", 800, 480)
-#app.tk.attributes("-fullscreen", True)
-message = Text(app, "I spotted you!")
+app.tk.attributes("-fullscreen", True)
+#message = Text(app, "I spotted you!")
 your_pic = Picture(app, latest_photo)
 new_pic = PushButton(app, new_picture, text="Neues Bild")
 app.display()
