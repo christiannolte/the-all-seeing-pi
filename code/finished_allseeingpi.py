@@ -3,7 +3,7 @@ from gpiozero import Button
 from overlay_functions import *
 from time import gmtime, strftime
 from guizero import App, PushButton, Text, Picture
-from twython import Twython
+
 
 # Tell the next overlay button what to do
 def next_overlay():
