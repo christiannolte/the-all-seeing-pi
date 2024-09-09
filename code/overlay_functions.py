@@ -3,10 +3,11 @@
  
 from PIL import Image
 from itertools import cycle
+import cv2
 
 # EDIT THESE VALUES ------------------------
-overlays_dir = "/home/pi/allseeingpi/overlays"
-overlays = ['girl', 'cowboy', 'top', 'pink', 'glassesnose', 'moustache', 'sunglasses', 'elvis', 'emo', 'blackhat', 'emo2', 'baseball', 'flowers', 'santa', 'alps', 'mop', 'glasses']
+overlays_dir = "/home/pi/the-all-seeing-pi/en/resources"
+overlays = ['girl', 'cowboy', 'top', 'pink', 'glassesnose', 'moustache', 'sunglasses', 'elvis', 'emo', 'blackhat', 'emo2', 'baseball', 'flowers', 'santa', 'alps', 'mop', 'glasses' , 'blank']
 # ------------------------------------------
 
 
@@ -27,27 +28,22 @@ def _pad(resolution, width=32, height=16):
         ((resolution[1] + (height - 1)) // height) * height,
     )
 
-def remove_overlays(camera):
-    
-    # Remove all overlays from the camera preview
-    for o in camera.overlays:
-        camera.remove_overlay(o) 
-
 
 def preview_overlay(camera=None, overlay=None):
 
-    # Remove all overlays
-    remove_overlays(camera)
 
     # Get an Image object of the chosen overlay
-    overlay_img = _get_overlay_image(overlay)
+#    overlay_img = _get_overlay_image(overlay)
 
     # Pad it to the right resolution
-    pad = Image.new('RGB', _pad(camera.resolution))
-    pad.paste(overlay_img, (0, 0))
+#    pad = Image.new('RGB', _pad(camera.resolution))
+#    pad.paste(overlay_img, (0, 0))
 
     # Add the overlay
-    camera.add_overlay(pad.tobytes(), alpha=128, layer=3)
+#    camera.add_overlay(pad.tobytes(), alpha=128, layer=3)
+    liveoverlay = cv2.imread(overlays_dir + "/" + overlay + ".png", cv2.IMREAD_UNCHANGED)
+    camera.set_overlay(liveoverlay)
+    
 
 def output_overlay(output=None, overlay=None):
 
@@ -56,9 +52,11 @@ def output_overlay(output=None, overlay=None):
 
     # ...and a captured photo
     output_img = Image.open(output).convert('RGBA')
-
     # Combine the two and save the image as output
-    new_output = Image.alpha_composite(output_img, overlay_img)
+    print(output_img,overlay_img)
+    overlay_img_resized= overlay_img.resize(output_img.size)
+    print(output_img,overlay_img_resized)
+    new_output = Image.alpha_composite(output_img, overlay_img_resized)
     new_output.save(output)
 
 all_overlays = cycle(overlays)
