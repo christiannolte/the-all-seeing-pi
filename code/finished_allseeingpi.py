@@ -27,7 +27,7 @@ def take_picture():
     output_overlay(output, overlay)
 
     # Save a smaller gif
-    size = 400, 400
+    size = 550, 550
     gif_img = Image.open(output)
     gif_img.thumbnail(size, Image.ANTIALIAS)
     gif_img.save(latest_photo, 'gif')
