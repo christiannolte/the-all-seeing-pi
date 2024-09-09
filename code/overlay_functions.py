@@ -7,7 +7,8 @@ import cv2
 
 # EDIT THESE VALUES ------------------------
 overlays_dir = "/home/pi/the-all-seeing-pi/en/resources"
-overlays = ['girl', 'cowboy', 'top', 'pink', 'glassesnose', 'moustache', 'sunglasses', 'elvis', 'emo', 'blackhat', 'emo2', 'baseball', 'flowers', 'santa', 'alps', 'mop', 'glasses' , 'blank']
+overlays = [ 'blank', 'alps', 'blackhat', 'computer', 'elvis', 'emo', 'girl', 'glasses', 'moustache',  'pink', 'robotsideblue',  'santa', 'top', 'baseball', 'cowboy', 'emo2', 'flowers', 'glassesnose', 'mop',  'music', 'robotpink',  'rocket', 'sunglasses' ]
+#'girl', 'cowboy', 'top', 'pink', 'glassesnose', 'moustache', 'sunglasses', 'elvis', 'emo', 'blackhat', 'emo2', 'baseball', 'flowers', 'santa', 'alps', 'mop', 'glasses' , 'blank']
 # ------------------------------------------
 
 
